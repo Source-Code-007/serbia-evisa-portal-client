@@ -17,7 +17,6 @@ const Homepage = () => {
   const printContentRef = useRef(null);
   const handlePrint = useReactToPrint({
     content: () => printContentRef.current,
-    // evisa.e-gov.kg_printStatus.php_lng=en&unikal_numb=70126357
     documentTitle: `serbia-evisa-portal-${visaData?.eVisaId}`,
     // onBeforePrint: () => {console.log("before printing...");},
     // onAfterPrint: () => {console.log("after printing...");},
@@ -44,12 +43,10 @@ const Homepage = () => {
 
 
   
-  console.log(data, isLoading, 'test');
-  console.log(visaData, 'local');
 
   return (
     <Container>
-      {!data ? <div className="my-4 mb-8 !px-[20px] sm:!px-[50px] md:!px-[110px] p-8 rounded-md border border-primary">
+      {!data ? <div className="my-4 mb-8 !px-[20px] sm:!px-[50px] md:!px-[110px] p-8 rounded-md border border-primary pb-[120px]">
         <div className="flex gap-2 items-center">
           <span className="bg-primary rounded-full text-white text-xl p-2"><RiVisaFill /></span>
           <h2 className="flex-1 border-b border-primary text-xl text-primary font-semibold">Portal of Serbia e-Visa</h2>
@@ -115,12 +112,12 @@ const Homepage = () => {
                   <div className="font-semibold space-y-1">
                     <h2 className="font-bold">Детаљи апликације/ Application details</h2>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray-300 w-[280px] leading-[16px] p-2">ид апликације/ <br />
+                      <h2 className="bg-gray w-[280px] leading-[16px] p-2">ид апликације/ <br />
                         Application ID</h2>
                       <p>{visaData.applicationId}</p>
                     </div>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray-300 w-[280px] p-1 leading-[16px]">Датум подношења захтева/ <br /> Date of Application
+                      <h2 className="bg-gray w-[280px] p-1 leading-[16px]">Датум подношења захтева/ <br /> Date of Application
                       </h2>
                       <p>{visaData.dateOfApplication}</p>
                     </div>
@@ -128,27 +125,27 @@ const Homepage = () => {
                     <h2 className="font-bold leading-[16px]">Ово је да обавестите е-визу која је издата/ <br /> This is to inform an e-visa issued to</h2>
 
                     <div className="flex gap-4">
-                      <h2 className="bg-gray-300 w-[280px] p-1">Презиме/ Surname</h2>
+                      <h2 className="bg-gray w-[280px] p-1">Презиме/ Surname</h2>
                       <p>{visaData.surName}</p>
                     </div>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray-300 w-[280px] p-1">Име / Given name(s)</h2>
+                      <h2 className="bg-gray w-[280px] p-1">Име / Given name(s)</h2>
                       <p>{visaData.name}</p>
                     </div>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray-300 w-[280px] p-1">Датум рођења / Date of birth(s)</h2>
+                      <h2 className="bg-gray w-[280px] p-1">Датум рођења / Date of birth(s)</h2>
                       <p>{visaData.dob}</p>
                     </div>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray-300 w-[280px] p-1">Сек / Sex</h2>
+                      <h2 className="bg-gray w-[280px] p-1">Сек / Sex</h2>
                       <p>{visaData.sex}</p>
                     </div>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray-300 w-[280px] p-1">националност / Nationality</h2>
+                      <h2 className="bg-gray w-[280px] p-1">националност / Nationality</h2>
                       <p>Bangladeshi</p>
                     </div>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray-300 w-[280px] p-1 leading-[16px] ">Број путне исправе / <br />
+                      <h2 className="bg-gray w-[280px] p-1 leading-[16px] ">Број путне исправе / <br />
                         Travel document number</h2>
                       <p>{visaData.travelDocumentNumber}</p>
                     </div>
@@ -163,35 +160,35 @@ const Homepage = () => {
                 <div className="font-semibold space-y-1">
                   <h2 className="font-bold">Детаљи о е-визама / E-visa details</h2>
                   <div className="flex gap-4">
-                    <h2 className="bg-gray-300 w-[280px] p-1 leading-[16px]">Важење е-визе / E-visa validity</h2>
+                    <h2 className="bg-gray w-[280px] p-1 leading-[16px]">Важење е-визе / E-visa validity</h2>
                     <div className="flex items-center gap-4">
                     <p>{visaData.validityStart}</p>
                     <p>{visaData.validityEnd}</p>
                     </div>
                   </div>
                   <div className="flex gap-4">
-                    <h2 className="bg-gray-300 w-[280px] p-1 leading-[16px]">Трајање боравка (дана) / Duration of stay (days) Број уноса / <br />
+                    <h2 className="bg-gray w-[280px] p-1 leading-[16px]">Трајање боравка (дана) / Duration of stay (days) Број уноса / <br />
                       Number of Entries</h2>
                     <p>{visaData.duration}</p>
                   </div>
                   <div className="flex gap-4">
-                    <h2 className="bg-gray-300 w-[280px] p-1 leading-[16px]">Категорија електронске визе / Category of electronic visa</h2>
+                    <h2 className="bg-gray w-[280px] p-1 leading-[16px]">Категорија електронске визе / Category of electronic visa</h2>
                     <p>РАД / WORK</p>
                   </div>
                   <div className="flex gap-4">
-                    <h2 className="bg-gray-300 w-[280px] p-1 leading-[16px]">Број одлуке о додели е-визе / <br /> E-visa grant decision number</h2>
+                    <h2 className="bg-gray w-[280px] p-1 leading-[16px]">Број одлуке о додели е-визе / <br /> E-visa grant decision number</h2>
                     <p>{visaData.grantDecisionNumber}</p>
                   </div>
                   <div className="flex gap-4">
-                    <h2 className="bg-gray-300 w-[280px] p-1 leading-[16px]"> Датум одлуке о додели е-визе / <br /> E-visa grant decision date</h2>
+                    <h2 className="bg-gray w-[280px] p-1 leading-[16px]"> Датум одлуке о додели е-визе / <br /> E-visa grant decision date</h2>
                     <p>{visaData.grantDecisionDate}</p>
                   </div>
                   <div className="flex gap-4">
-                    <h2 className="bg-gray-300 w-[280px] p-1 leading-[16px]"> Е-виза Ид / E-visa ID</h2>
+                    <h2 className="bg-gray w-[280px] p-1 leading-[16px]"> Е-виза Ид / E-visa ID</h2>
                     <p>{visaData.eVisaId}</p>
                   </div>
                   <div className="flex gap-4">
-                    <h2 className="bg-gray-300 w-[280px] p-1 leading-[16px]">код за верификацију е-визе / <br /> E-visa Verification Code</h2>
+                    <h2 className="bg-gray w-[280px] p-1 leading-[16px]">код за верификацију е-визе / <br /> E-visa Verification Code</h2>
                     <p>{visaData.eVisaVerificationCode}</p>
                   </div>
                 </div>
