@@ -40,7 +40,7 @@ const DashboardLayout = () => {
 
   
 const items = [
-  getItem("Dashboard", "/dashboard/eVisaXXYY", <FaHome />),
+  getItem("Dashboard", "/dashboard/serbiaevisa", <FaHome />),
 
 ];
 

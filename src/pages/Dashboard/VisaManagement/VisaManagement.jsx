@@ -9,9 +9,7 @@ import {
   Form,
   message,
   Skeleton,
-  Upload,
-  Switch,
-  Tooltip,
+  Select,
 } from "antd";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -45,22 +43,22 @@ const VisaManagement = () => {
     if (editingVisa) {
       form.setFieldsValue({
         userImg: editingVisa.userImg,
-        visaApplicationStatus: editingVisa.visaApplicationStatus,
-        applicationStatusDate: editingVisa.applicationStatusDate,
-        referenceNumber: editingVisa.referenceNumber,
-        passportCountry: editingVisa.passportCountry,
-        passportType: editingVisa.passportType,
-        passportNumber: editingVisa.passportNumber,
-        passportIssueDate: editingVisa.passportIssueDate,
-        passportExpirationDate: editingVisa.passportExpirationDate,
+        applicationId: editingVisa.applicationId,
+        dateOfApplication: editingVisa.dateOfApplication,
+        surName: editingVisa.surName,
         name: editingVisa.name,
-        surname: editingVisa.surname,
-        middleNameOrPatronymic: editingVisa.middleNameOrPatronymic,
-        birthDate: editingVisa.birthDate,
-        visaType: editingVisa.visaType,
-        visaDuration: editingVisa.visaDuration,
-        entryTimes: editingVisa.entryTimes,
-        visaValidityPeriod: editingVisa.visaValidityPeriod,
+        dob: editingVisa.dob,
+        sex: editingVisa.sex,
+        travelDocumentNumber: editingVisa.travelDocumentNumber,
+        validityStart: editingVisa.validityStart,
+        validityEnd: editingVisa.validityEnd,
+        duration: editingVisa.duration,
+        numberOfentries: editingVisa.numberOfentries,
+        grantDecisionNumber: editingVisa.grantDecisionNumber,
+        grantDecisionDate: editingVisa.grantDecisionDate,
+        eVisaId: editingVisa.eVisaId,
+        eVisaVerificationCode: editingVisa.eVisaVerificationCode,
+        passportNumber: editingVisa.passportNumber
       });
     } else {
       form.resetFields();
@@ -68,9 +66,8 @@ const VisaManagement = () => {
   }, [editingVisa, form]);
 
   const handleAddToVisa = async (values) => {
-    const {visaDuration, ...restValues} = values || {}
     try {
-      const res = await createVisa({...restValues, visaDuration: Number(visaDuration), userQrCodeImg: "https://i.ibb.co/zNckTjr/qrcode.png"}).unwrap();
+      const res = await createVisa({ ...values }).unwrap();
       message.success(res?.message || "Visa successfully created!", 1.5);
       refetch();
       form.resetFields()
@@ -81,11 +78,9 @@ const VisaManagement = () => {
   };
 
   const handleUpdateVisa = async (values) => {
-    const {visaDuration} = values || {}
     try {
       const res = await updateVisa({
         ...values,
-        visaDuration: Number(visaDuration),
         _id: editingVisa?._id,
       }).unwrap();
 
@@ -142,19 +137,19 @@ const VisaManagement = () => {
       ),
     },
     {
-      title: "Visa Application Status",
-      dataIndex: "visaApplicationStatus",
-      key: "visaApplicationStatus",
+      title: "Application ID",
+      dataIndex: "applicationId",
+      key: "applicationId",
     },
     {
-      title: "Application Status Date",
-      dataIndex: "applicationStatusDate",
-      key: "applicationStatusDate",
+      title: "Date Of Application",
+      dataIndex: "dateOfApplication",
+      key: "dateOfApplication",
     },
     {
-      title: "Reference Number",
-      dataIndex: "referenceNumber",
-      key: "referenceNumber",
+      title: "Visa ID",
+      dataIndex: "eVisaId",
+      key: "eVisaId",
     },
     {
       title: "Name",
@@ -212,90 +207,109 @@ const VisaManagement = () => {
       name: "userImg",
       label: "User Image",
       placeholder: "Enter user image URL",
+      type: "text"
     },
     {
-      name: "visaApplicationStatus",
-      label: "Visa Application Status",
-      placeholder: "Enter visa application status",
+      name: "applicationId",
+      label: "Application ID",
+      placeholder: "Enter application ID",
+      type: "text"
     },
     {
-      name: "applicationStatusDate",
-      label: "Application Status Date",
-      placeholder: "Enter application status date",
+      name: "dateOfApplication",
+      label: "Date of Application",
+      placeholder: "Enter date of application",
+      type: "text"
     },
     {
-      name: "referenceNumber",
-      label: "Reference Number",
-      placeholder: "Enter reference number",
-    },
-    {
-      name: "passportCountry",
-      label: "Passport Country",
-      placeholder: "Enter passport country",
-    },
-    {
-      name: "passportType",
-      label: "Passport Type",
-      placeholder: "Enter passport type",
-    },
-    {
-      name: "passportNumber",
-      label: "Passport Number",
-      placeholder: "Enter passport number",
-    },
-    {
-      name: "passportIssueDate",
-      label: "Passport Issue Date",
-      placeholder: "Enter passport issue date",
-    },
-    {
-      name: "passportExpirationDate",
-      label: "Passport Expiration Date",
-      placeholder: "Enter passport expiration date",
+      name: "surName",
+      label: "Surname",
+      placeholder: "Enter surname",
+      type: "text"
     },
     {
       name: "name",
       label: "Name",
       placeholder: "Enter name",
+      type: "text"
     },
     {
-      name: "surname",
-      label: "Surname",
-      placeholder: "Enter surname",
+      name: "dob",
+      label: "Date of Birth",
+      placeholder: "Enter date of birth",
+      type: "text"
     },
     {
-      name: "middleNameOrPatronymic",
-      label: "Middle Name or Patronymic",
-      placeholder: "Enter middle name or patronymic",
+      name: "sex",
+      label: "Sex",
+      placeholder: "Select sex",
+      type: "select",
+      options: ['MALE', 'FEMALE', 'OTHER']
     },
     {
-      name: "birthDate",
-      label: "Birth Date",
-      placeholder: "Enter birth date",
+      name: "travelDocumentNumber",
+      label: "Travel Document Number",
+      placeholder: "Enter travel document number",
+      type: "text"
     },
     {
-      name: "visaType",
-      label: "Visa Type",
-      placeholder: "Enter visa type",
+      name: "validityStart",
+      label: "Validity Start",
+      placeholder: "Enter validity start date",
+      type: "text"
     },
     {
-      name: "visaDuration",
-      label: "Visa Duration",
-      placeholder: "Enter visa duration",
+      name: "validityEnd",
+      label: "Validity End",
+      placeholder: "Enter validity end date",
+      type: "text"
     },
     {
-      name: "entryTimes",
-      label: "Entry Times",
-      placeholder: "Enter entry times",
+      name: "duration",
+      label: "Duration",
+      placeholder: "Enter duration",
+      type: "text"
     },
     {
-      name: "visaValidityPeriod",
-      label: "Visa Validity Period",
-      placeholder: "Enter visa validity period",
+      name: "numberOfentries",
+      label: "Number of Entries",
+      placeholder: "Enter number of entries",
+      type: "text"
     },
+    {
+      name: "grantDecisionNumber",
+      label: "Grant Decision Number",
+      placeholder: "Enter grant decision number",
+      type: "text"
+    },
+    {
+      name: "grantDecisionDate",
+      label: "Grant Decision Date",
+      placeholder: "Enter grant decision date",
+      type: "text"
+    },
+    {
+      name: "eVisaId",
+      label: "eVisa ID",
+      placeholder: "Enter eVisa ID",
+      type: "text"
+    },
+    {
+      name: "eVisaVerificationCode",
+      label: "eVisa Verification Code",
+      placeholder: "Enter eVisa verification code",
+      type: "text"
+    },
+    {
+      name: "passportNumber",
+      label: "Passport Number",
+      placeholder: "Enter passport number",
+      type: "text"
+    }
   ];
 
-  // console.log(visaData, 'VisaData');
+
+  console.log(isLoading, visaData, 'VisaData');
 
   return (
     <div>
@@ -347,27 +361,48 @@ const VisaManagement = () => {
         >
           <Form
             form={form}
-            name="VisaForm"
+            name="serbiaEVisaForm"
             onFinish={editingVisa ? handleUpdateVisa : handleAddToVisa}
             layout="vertical"
             className="max-h-[600px] overflow-y-scroll pr-2"
           >
             {visaUploadFormData?.map((elem, ind) => {
-              return (
-                <Form.Item
-                  key={ind}
-                  label={elem.label}
-                  name={elem.name}
-                  rules={[
-                    {
-                      required: editingVisa || elem?.name == 'middleNameOrPatronymic' ? false : true,
-                      message: `Please enter ${elem.label}`,
-                    },
-                  ]}
-                >
-                  <Input placeholder={elem.placeholder} />
-                </Form.Item>
-              );
+              if (elem.type === 'text') {
+                return (
+                  <Form.Item
+                    key={ind}
+                    label={elem.label}
+                    name={elem.name}
+                    rules={[
+                      {
+                        required: editingVisa ? false : true,
+                        message: `Please enter ${elem.label}`,
+                      },
+                    ]}
+                  >
+                    <Input placeholder={elem.placeholder} />
+                  </Form.Item>
+                );
+              }
+              if (elem.type === 'select') {
+                return (
+                  <Form.Item
+                    key={ind}
+                    label={elem.label}
+                    name={elem.name}
+                    rules={[
+                      {
+                        required: editingVisa ? false : true,
+                        message: `Please enter ${elem.label}`,
+                      },
+                    ]}
+                  >
+                    <Select options={elem.options} placeholder={elem.placeholder} />
+                  </Form.Item>
+                );
+              }
+
+
             })}
 
             <Form.Item>
@@ -409,90 +444,60 @@ const VisaManagement = () => {
               </h2>
 
               <p className="flex gap-1 flex-wrap">
-                <strong>Visa application status:</strong>
+                <strong>Date Of Birth:</strong>
                 <p className="text-normal-desc">
-                  {selectedRecord.visaApplicationStatus}
+                  {selectedRecord.dob}
                 </p>
               </p>
               <p className="flex gap-1 flex-wrap">
-                <strong>Application status date:</strong>
+                <strong>Sex:</strong>
                 <p className="text-normal-desc">
-                  {selectedRecord.applicationStatusDate}
+                  {selectedRecord.sex}
                 </p>
               </p>
               <p className="flex gap-1 flex-wrap">
-                <strong>Reference number:</strong>
+                <strong>Travel Document Number:</strong>
                 <p className="text-normal-desc">
-                  {selectedRecord.referenceNumber}
+                  {selectedRecord.travelDocumentNumber}
                 </p>
               </p>
               <p className="flex gap-1 flex-wrap">
-                <strong>Name:</strong>
-                <p className="text-normal-desc">{selectedRecord.name}</p>
+                <strong>Validity:</strong>
+                <p className="text-normal-desc">{selectedRecord.validityStart} - {selectedRecord.validityEnd}</p>
               </p>
               <p className="flex gap-1 flex-wrap">
-                <strong>Surname:</strong>
-                <p className="text-normal-desc">{selectedRecord.surname}</p>
+                <strong>Duration:</strong>
+                <p className="text-normal-desc">{selectedRecord.duration}</p>
               </p>
               <p className="flex gap-1 flex-wrap">
-                <strong>Passport Country:</strong>
+                <strong>Number of Entries:</strong>
                 <p className="text-normal-desc">
-                  {selectedRecord.passportCountry}
+                  {selectedRecord.numberOfEntries}
                 </p>
               </p>
               <p className="flex gap-1 flex-wrap">
-                <strong>Passport Type:</strong>
+                <strong>Grant Decision Number:</strong>
                 <p className="text-normal-desc">
-                  {selectedRecord.passportType}
+                  {selectedRecord.grantDecisionNumber}
                 </p>
               </p>
               <p className="flex gap-1 flex-wrap">
-                <strong>Passport Number:</strong>
+                <strong>grantDecisionDate:</strong>
                 <p className="text-normal-desc">
-                  {selectedRecord.passportNumber}
+                  {selectedRecord.grantDecisionDate}
                 </p>
               </p>
               <p className="flex gap-1 flex-wrap">
-                <strong>Passport Issue Date:</strong>
+                <strong>Visa Verificaton Code:</strong>
                 <p className="text-normal-desc">
-                  {selectedRecord.passportIssueDate}
+                  {selectedRecord.eVisaVerificationCode}
                 </p>
               </p>
 
               <p className="flex gap-1 flex-wrap">
-                <strong>Passport Expiration Date:</strong>
+                <strong>Passport Number:</strong>
                 <p className="text-normal-desc">
-                  {selectedRecord.passportExpirationDate}
-                </p>
-              </p>
-              <p className="flex gap-1 flex-wrap">
-                <strong>Middle name:</strong>
-                <p className="text-normal-desc">
-                  {selectedRecord.middleNameOrPatronymic}
-                </p>
-              </p>
-              <p className="flex gap-1 flex-wrap">
-                <strong>Birth date:</strong>
-                <p className="text-normal-desc">{selectedRecord.birthDate}</p>
-              </p>
-              <p className="flex gap-1 flex-wrap">
-                <strong>Visa type:</strong>
-                <p className="text-normal-desc">{selectedRecord.visaType}</p>
-              </p>
-              <p className="flex gap-1 flex-wrap">
-                <strong>Visa duration:</strong>
-                <p className="text-normal-desc">
-                  {selectedRecord.visaDuration}
-                </p>
-              </p>
-              <p className="flex gap-1 flex-wrap">
-                <strong>Entry times:</strong>
-                <p className="text-normal-desc">{selectedRecord.entryTimes}</p>
-              </p>
-              <p className="flex gap-1 flex-wrap">
-                <strong>Visa validity period:</strong>
-                <p className="text-normal-desc">
-                  {selectedRecord.visaValidityPeriod}
+                  {selectedRecord.passportNumber}
                 </p>
               </p>
             </div>

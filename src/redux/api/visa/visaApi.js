@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 
 export const visa = createApi({
-  reducerPath: "visa",
-  baseQuery: fetchBaseQuery({baseUrl: import.meta.env.VITE_REACT_APP_ROOT}),
+  reducerPath: "visaAPI",
+  baseQuery: fetchBaseQuery({baseUrl: import.meta.env.VITE_SERVER_BASE_URL}),
 
   endpoints: (builder) => ({
     createVisa: builder.mutation({
@@ -18,7 +18,6 @@ export const visa = createApi({
 
     getAllVisa: builder.query({
       query: ({page, limit}) => `/visa?page=${page}&limit=${limit}`,
-
     }),
 
     getSingleVisa: builder.query({
@@ -51,6 +50,7 @@ export const visa = createApi({
 export const {
   useGetAllVisaQuery,
   useGetSingleVisaQuery,
+  useLazyGetSingleVisaQuery,
   useCreateVisaMutation,
   useUpdateVisaMutation,
   useDeleteVisaMutation
