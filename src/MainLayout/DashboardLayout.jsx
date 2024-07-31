@@ -22,27 +22,26 @@ function getItem(label, key, icon, children) {
 const DashboardLayout = () => {
   const [time, setTime] = useState(null)
   const navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState(false);
 
   // const {
   //   token: { colorBgContainer, borderRadiusLG },
   // } = theme.useToken();
 
-  useEffect(()=> {
-    const interval = setInterval(()=> {
+  useEffect(() => {
+    const interval = setInterval(() => {
       setTime(moment().format("LTS"))
     }, 1000)
 
-    return ()=> {
+    return () => {
       clearInterval(interval)
     }
   }, [])
 
-  
-const items = [
-  getItem("Dashboard", "/dashboard/serbiaevisa", <FaHome />),
 
-];
+  const items = [
+    getItem("Dashboard", "/dashboard/serbiaevisa", <FaHome />),
+
+  ];
 
 
 
@@ -54,16 +53,9 @@ const items = [
     >
       <Sider
         collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-        // style={{
-        //   overflow: "auto",
-        //   height: "100vh",
-        //   position: "fixed",
-        //   left: 0,
-        //   top: 0,
-        //   bottom: 0,
-        // }}
+        breakpoint="lg"
+        collapsedWidth="0"
+        className="!h-screen !sticky !top-0"
       >
         <Menu theme="dark">
           <div>
@@ -100,7 +92,7 @@ const items = [
         <Header>
           <div className="demo-logo" />
           <Menu mode="horizontal" theme="dark">
-          <h2 className="text-white font-bold flex items-center gap-1 pr-2"><FaClock/>{time}</h2>
+            <h2 className="text-white font-bold flex items-center gap-1 pr-2"><FaClock />{time}</h2>
           </Menu>
         </Header>
 

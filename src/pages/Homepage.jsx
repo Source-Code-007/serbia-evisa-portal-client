@@ -1,4 +1,4 @@
-import { Button, Form, Input, Skeleton, message } from "antd";
+import { Button, Form, Input, message } from "antd";
 import Container from "../Components/ui/Container";
 import { RiVisaFill } from "react-icons/ri";
 import { FaAngleRight } from "react-icons/fa";
@@ -26,7 +26,6 @@ const Homepage = () => {
 
 
   const handleSubmitId = async ({ id }) => {
-    console.log(id);
 
     try {
 
@@ -36,7 +35,6 @@ const Homepage = () => {
       }
     }
     catch (e) {
-      console.log(e, 'e');
       message.error(e.data?.message)
     }
   }
@@ -89,11 +87,11 @@ const Homepage = () => {
 
           {/* Component to be print */}
           <div
-            className={`font-bold bg-white min-h-screen text-black text-center print-content-font}`}
+            className={`font-bold bg-white min-h-screen text-black text-center print-content-font }`}
             id="printContent"
             ref={printContentRef}
           >
-            <div className="mx-[60px] py-4 space-y-3">
+            <div className="mx-[60px] py-4 space-y-3 !text-[13px]">
               {/* Header */}
               <img src={pdfHeader} alt="Serbia eVisa portal" />
 
@@ -112,7 +110,7 @@ const Homepage = () => {
                   <div className="font-semibold space-y-1">
                     <h2 className="font-bold">Детаљи апликације/ Application details</h2>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray w-[280px] leading-[16px] p-2">ид апликације/ <br />
+                      <h2 className="bg-gray w-[280px] leading-[16px] p-1">ид апликације/ <br />
                         Application ID</h2>
                       <p>{visaData.applicationId}</p>
                     </div>
@@ -125,23 +123,23 @@ const Homepage = () => {
                     <h2 className="font-bold leading-[16px]">Ово је да обавестите е-визу која је издата/ <br /> This is to inform an e-visa issued to</h2>
 
                     <div className="flex gap-4">
-                      <h2 className="bg-gray w-[280px] p-1">Презиме/ Surname</h2>
+                      <h2 className="bg-gray w-[280px]">Презиме/ Surname</h2>
                       <p>{visaData.surName}</p>
                     </div>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray w-[280px] p-1">Име / Given name(s)</h2>
+                      <h2 className="bg-gray w-[280px]">Име / Given name(s)</h2>
                       <p>{visaData.name}</p>
                     </div>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray w-[280px] p-1">Датум рођења / Date of birth(s)</h2>
+                      <h2 className="bg-gray w-[280px]">Датум рођења / Date of birth(s)</h2>
                       <p>{visaData.dob}</p>
                     </div>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray w-[280px] p-1">Сек / Sex</h2>
+                      <h2 className="bg-gray w-[280px]">Сек / Sex</h2>
                       <p>{visaData.sex}</p>
                     </div>
                     <div className="flex gap-4">
-                      <h2 className="bg-gray w-[280px] p-1">националност / Nationality</h2>
+                      <h2 className="bg-gray w-[280px]">националност / Nationality</h2>
                       <p>Bangladeshi</p>
                     </div>
                     <div className="flex gap-4">
@@ -161,7 +159,7 @@ const Homepage = () => {
                   <h2 className="font-bold">Детаљи о е-визама / E-visa details</h2>
                   <div className="flex gap-4">
                     <h2 className="bg-gray w-[280px] p-1 leading-[16px]">Важење е-визе / E-visa validity</h2>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-8">
                     <p>{visaData.validityStart}</p>
                     <p>{visaData.validityEnd}</p>
                     </div>
@@ -184,7 +182,7 @@ const Homepage = () => {
                     <p>{visaData.grantDecisionDate}</p>
                   </div>
                   <div className="flex gap-4">
-                    <h2 className="bg-gray w-[280px] p-1 leading-[16px]"> Е-виза Ид / E-visa ID</h2>
+                    <h2 className="bg-gray w-[280px]"> Е-виза Ид / E-visa ID</h2>
                     <p>{visaData.eVisaId}</p>
                   </div>
                   <div className="flex gap-4">
@@ -197,7 +195,7 @@ const Homepage = () => {
               </div>
 
               {/* PDF footer */}
-              <div>
+              <div className="text-[16px]">
 
                 <div className="flex justify-between items-center gap-2">
                   <img src={qrCode} alt="Serbia eVisa portal" className="h-[180px] w-[180px]" />
@@ -207,9 +205,9 @@ const Homepage = () => {
 
                     <p style={{ wordSpacing: '18px' }} className="leading-[16px]">Please bring this notification with you and show transport company for a e-visa check.</p>
 
-                    <p className="font-normal leading-[16px]">
+                    <p className="font-normal leading-[16px] !tracking-widest">
                       {/* TODO: name can be replace space to < */}
-                      V{"<"}BGD {visaData.surName}{"<<"}{visaData.name?.split(' ').join('<')}{"<<<<<<<<<"} {visaData.passportNumber}{"<<<<"}64
+                      V{"<"}BGD {visaData.surName}{"<<"}{visaData.name?.split(' ').join('<')}{"<<<<<<<<<<<<<"}<br/>{visaData.passportNumber}{"<<<<"}64
                     </p>
 
                   </div>

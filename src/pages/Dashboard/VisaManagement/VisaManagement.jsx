@@ -158,7 +158,7 @@ const VisaManagement = () => {
     },
     {
       title: "Surname",
-      dataIndex: "surname",
+      dataIndex: "surName",
       key: "surname",
     },
     {
@@ -210,12 +210,6 @@ const VisaManagement = () => {
       type: "text"
     },
     {
-      name: "applicationId",
-      label: "Application ID",
-      placeholder: "Enter application ID",
-      type: "text"
-    },
-    {
       name: "dateOfApplication",
       label: "Date of Application",
       placeholder: "Enter date of application",
@@ -244,7 +238,7 @@ const VisaManagement = () => {
       label: "Sex",
       placeholder: "Select sex",
       type: "select",
-      options: ['MALE', 'FEMALE', 'OTHER']
+      options: [{value: 'MALE', label: 'Male'}, {value: 'FEMALE', label: 'Female'}, {value: 'OTHER', label: "Other"}]
     },
     {
       name: "travelDocumentNumber",
@@ -286,18 +280,6 @@ const VisaManagement = () => {
       name: "grantDecisionDate",
       label: "Grant Decision Date",
       placeholder: "Enter grant decision date",
-      type: "text"
-    },
-    {
-      name: "eVisaId",
-      label: "eVisa ID",
-      placeholder: "Enter eVisa ID",
-      type: "text"
-    },
-    {
-      name: "eVisaVerificationCode",
-      label: "eVisa Verification Code",
-      placeholder: "Enter eVisa verification code",
       type: "text"
     },
     {
