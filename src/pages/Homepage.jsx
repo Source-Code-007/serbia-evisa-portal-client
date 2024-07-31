@@ -165,9 +165,13 @@ const Homepage = () => {
                     </div>
                   </div>
                   <div className="flex gap-4">
-                    <h2 className="bg-gray w-[280px] p-1 leading-[16px]">Трајање боравка (дана) / Duration of stay (days) Број уноса / <br />
-                      Number of Entries</h2>
+                    <h2 className="bg-gray w-[280px] p-1 leading-[16px]">Трајање боравка (дана) / <br /> Duration of stay (days)</h2>
                     <p>{visaData.duration}</p>
+                  </div>
+                  <div className="flex gap-4">
+                    <h2 className="bg-gray w-[280px] p-1 leading-[16px]"> Број уноса / <br />
+                    Number of Entries</h2>
+                    <p>{visaData.numberOfentries}</p>
                   </div>
                   <div className="flex gap-4">
                     <h2 className="bg-gray w-[280px] p-1 leading-[16px]">Категорија електронске визе / Category of electronic visa</h2>

@@ -454,7 +454,7 @@ const VisaManagement = () => {
               <p className="flex gap-1 flex-wrap">
                 <strong>Number of Entries:</strong>
                 <p className="text-normal-desc">
-                  {selectedRecord.numberOfEntries}
+                  {selectedRecord.numberOfentries}
                 </p>
               </p>
               <p className="flex gap-1 flex-wrap">
