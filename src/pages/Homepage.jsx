@@ -39,7 +39,10 @@ const Homepage = () => {
     }
   }
 
-
+  const fullName = `${visaData.surName}<<${visaData.name?.split(' ')?.join('<')}`;
+  const minLength = 35; // or whatever minimum length is required for the first line to be full
+  const fillLength = minLength - fullName.length;
+  const fillString = '<'.repeat(fillLength);
   
 
   return (
@@ -150,7 +153,7 @@ const Homepage = () => {
 
                   </div>
 
-                  <img src={visaData?.userImg || 'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png" className="w-[150px] h-[150px]" alt="serbia eVisa portal'} className="h-[200px] w-[155px] border border-red-500" />
+                  <img src={visaData?.userImg || 'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png" className="w-[150px] h-[150px]" alt="serbia eVisa portal'} className="h-[180px] w-[155px]" />
                 </div>
 
 
@@ -211,7 +214,10 @@ const Homepage = () => {
 
                     <p className="font-normal leading-[16px] !tracking-widest">
                       {/* TODO: name can be replace space to < */}
-                      V{"<"}BGD {visaData.surName}{"<<"}{visaData.name?.split(' ').join('<')}{"<<<<<<<<<<<<<"}<br/>{visaData.passportNumber}{"<<<<"}64
+                      {/* V{"<"}BGD {visaData.surName}{"<<"}{visaData.name?.split(' ').join('<')}{"<<<<<<<<<<<<<"} */}
+                      {`V<BGD${fullName}${fillString}`}
+                      <br/>
+                      {visaData.passportNumber}
                     </p>
 
                   </div>
