@@ -6,6 +6,7 @@ import {
 } from "react-icons/fa";
 import { Layout, Menu } from "antd";
 import moment from "moment";
+import logo from '../assets/logo.png'
 const { Header, Content, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -61,9 +62,9 @@ const DashboardLayout = () => {
           <div>
             <div className=" flex justify-center mt-5">
               <img
-                src={'https://evisa.e-gov.kg/images/img/logo.png'}
+                src={logo}
                 alt="e-VISA"
-                className="inline-block !w-[100px] md:!w-[150px] !mt-[8px]"
+                className="inline-block !w-[100px] !h-[100px] !mt-[8px]"
               />
             </div>
           </div>
