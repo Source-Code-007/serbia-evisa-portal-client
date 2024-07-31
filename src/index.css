@@ -14,8 +14,8 @@
 
 
 /* Initially hide print content */
-/* @media screen {
+@media screen {
   #printContent {
     display: none;
   }
-} */
+}
