@@ -150,7 +150,7 @@ const Homepage = () => {
 
                   </div>
 
-                  <img src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png" className="w-[150px] h-[150px]" alt="serbia eVisa portal" />
+                  <img src={visaData?.userImg || 'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png" className="w-[150px] h-[150px]" alt="serbia eVisa portal'} className="h-[200px] w-[155px] border border-red-500" />
                 </div>
 
 
