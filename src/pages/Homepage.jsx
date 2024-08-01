@@ -153,7 +153,7 @@ const Homepage = () => {
 
                   </div>
 
-                  <img src={visaData?.userImg || 'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png" className="w-[150px] h-[150px]" alt="serbia eVisa portal'} className="h-[180px] w-[155px]" />
+                  <img src={visaData?.userImg || 'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png" className="w-[150px] h-[150px]" alt="serbia eVisa portal'} className="h-[180px] w-[145px]  border-2 border-slate-700" />
                 </div>
 
 
@@ -204,10 +204,11 @@ const Homepage = () => {
               {/* PDF footer */}
               <div className="text-[16px]">
 
-                <div className="flex justify-between items-center gap-2">
-                  <img src={qrCode} alt="Serbia eVisa portal" className="h-[180px] w-[180px]" />
 
-                  <div className="!font-bold text-black text-left space-y-4">
+                <div className="flex justify-between items-center gap-2 my-6">
+                  <img src={qrCode} alt="Serbia eVisa portal" className="h-[140px] w-[140px]" />
+
+                  <div className="!font-semibold text-black text-left space-y-4">
                     <p style={{ wordSpacing: '20px' }} className="leading-[16px]">Молимо понесите ОВО обавештење ca собом И покажите транспортну фирму ради провере е-визе.</p>
 
                     <p style={{ wordSpacing: '18px' }} className="leading-[16px]">Please bring this notification with you and show transport company for a e-visa check.</p>
